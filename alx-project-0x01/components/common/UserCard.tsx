@@ -4,27 +4,35 @@ import { UserProps } from "../../interfaces";
 import React from "react";
 import { UserProps } from "../../interfaces";
 
-const UserCard: React.FC<{ user: UserProps }> = ({ user }) => {
+const UserCard: React.FC<UserProps> = ({
+  name,
+  username,
+  email,
+  phone,
+  website,
+  address,
+  company,
+}) => {
   return (
     <div style={styles.card}>
-      <h2>{user.name}</h2>
-      <p><strong>Username:</strong> {user.username}</p>
-      <p><strong>Email:</strong> {user.email}</p>
-      <p><strong>Phone:</strong> {user.phone}</p>
-      <p><strong>Website:</strong> <a href={`http://${user.website}`} target="_blank" rel="noopener noreferrer">{user.website}</a></p>
+      <h2>{name}</h2>
+      <p><strong>Username:</strong> {username}</p>
+      <p><strong>Email:</strong> {email}</p>
+      <p><strong>Phone:</strong> {phone}</p>
+      <p><strong>Website:</strong> <a href={`http://${website}`} target="_blank" rel="noopener noreferrer">{website}</a></p>
 
       <div style={styles.section}>
         <h4>Address</h4>
-        <p>{user.address.street}, {user.address.suite}</p>
-        <p>{user.address.city}, {user.address.zipcode}</p>
-        <p><em>Geo:</em> {user.address.geo.lat}, {user.address.geo.lng}</p>
+        <p>{address.street}, {address.suite}</p>
+        <p>{address.city}, {address.zipcode}</p>
+        <p><em>Geo:</em> {address.geo.lat}, {address.geo.lng}</p>
       </div>
 
       <div style={styles.section}>
         <h4>Company</h4>
-        <p><strong>{user.company.name}</strong></p>
-        <p>{user.company.catchPhrase}</p>
-        <p><em>{user.company.bs}</em></p>
+        <p><strong>{company.name}</strong></p>
+        <p>{company.catchPhrase}</p>
+        <p><em>{company.bs}</em></p>
       </div>
     </div>
   );
