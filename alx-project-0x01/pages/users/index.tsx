@@ -1,20 +1,34 @@
 import Header from "@/components/layout/Header";
 
-import React from "react";
-import { UserProps } from "../../interfaces";
+import React, { useState } from "react";
+import { UserProps, UserData } from "../../interfaces";
 import UserCard from "../../components/common/UserCard";
+import UserModal from "../../components/common/UserModal";
 
 interface UsersPageProps {
   posts: UserProps[];
 }
 
 const Users: React.FC<UsersPageProps> = ({ posts }) => {
+  const [users, setUsers] = useState<UserProps[]>(posts);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleAddUser = (newUser: UserData) => {
+    setUsers((prev) => [...prev, newUser]);
+  };
+
   return (
     <div style={{ padding: "2rem" }}>
       <h1>Users</h1>
-      {posts.map((user) => (
+      <button onClick={() => setIsModalOpen(true)}>Add User</button>
+      {users.map((user) => (
         <UserCard key={user.id} user={user} />
       ))}
+      <UserModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        onSubmit={handleAddUser}
+      />
     </div>
   );
 };
