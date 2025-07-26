@@ -1,7 +1,14 @@
 import React from "react";
 import { UserProps } from "../../interfaces";
 
-const UserCard: React.FC<{ user: UserProps }> = ({ user }) => {
+import React from "react";
+import { UserProps } from "../../interfaces";
+
+interface UserCardProps {
+  user: UserProps;
+}
+
+const UserCard: React.FC<UserCardProps> = ({ user }) => {
   return (
     <div style={styles.card}>
       <h2>{user.name}</h2>
@@ -9,12 +16,14 @@ const UserCard: React.FC<{ user: UserProps }> = ({ user }) => {
       <p><strong>Email:</strong> {user.email}</p>
       <p><strong>Phone:</strong> {user.phone}</p>
       <p><strong>Website:</strong> <a href={`http://${user.website}`} target="_blank" rel="noopener noreferrer">{user.website}</a></p>
+      
       <div style={styles.section}>
         <h4>Address</h4>
         <p>{user.address.street}, {user.address.suite}</p>
         <p>{user.address.city}, {user.address.zipcode}</p>
         <p><em>Geo:</em> {user.address.geo.lat}, {user.address.geo.lng}</p>
       </div>
+      
       <div style={styles.section}>
         <h4>Company</h4>
         <p><strong>{user.company.name}</strong></p>
