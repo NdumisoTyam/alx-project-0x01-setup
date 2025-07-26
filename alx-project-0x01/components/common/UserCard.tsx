@@ -4,11 +4,7 @@ import { UserProps } from "../../interfaces";
 import React from "react";
 import { UserProps } from "../../interfaces";
 
-interface UserCardProps {
-  user: UserProps;
-}
-
-const UserCard: React.FC<UserCardProps> = ({ user }) => {
+const UserCard: React.FC<{ user: UserProps }> = ({ user }) => {
   return (
     <div style={styles.card}>
       <h2>{user.name}</h2>
